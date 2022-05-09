@@ -3,16 +3,21 @@
 #include <iostream>
 #include <vector>
 #include <string> // Acredito que com a iostream não precisa incluir a biblioteca <string>
+#include <fstream> // Define várias classes que dão suporte a operações de iostreams em sequências armazenadas em arquivos externos.
 
 using namespace std;
 
 void PrintList(const vector<string> &List);
 bool RemoveString(string str, vector<string> &List);
+bool SaveDatabase(string path, const vector<string> &List);
+bool LoadDatabase(string path, vector<string> &List);
 
-int main()
+int main() // Função main
 {
     // Vector
     vector<string> listOfWords;
+    LoadDatabase("database.dat", listOfWords);
+        
     
     // Declaração de variáveis
     int index;
@@ -55,6 +60,7 @@ int main()
     
     if(ch == '3')
     {
+        
         continue;
     }
     
@@ -68,7 +74,7 @@ int main()
         cout << "Enter with a word to remove: ";
            string str;
            cin >> str;
-           if(!RemoveString(str, ListOfWords))
+           if(!RemoveString(str, listOfWords))
                 cout << endl << "Nothing to remove" << endl;
            continue;
     }
@@ -80,6 +86,7 @@ int main()
     
     if(ch == '0')
     {
+        SaveDatabase("database.dat", listOfWords); // Quando finalizar ele salva os dados
         break;
     }
 
@@ -122,7 +129,49 @@ bool RemoveString(string str, vector<string> &listOfWords) {
         i++;
 }
     return hasErase;
-} // Fecha a função
+} // Fecha a função RemoveString
+
+bool SaveDatabase(string path, const vector<string> &List) {
+    ofstream FileWriter(path);
+    
+    if(FileWriter.is_open() == false)
+    {
+        cout << "Error, file not loaded." << endl;
+        return false;
+        
+    }
+    else
+    {
+        for(size_t i=0; i<List.size(); i++)
+        {
+            FileWriter << List.at(i) << endl;
+        }
+    }
+    
+    FileWriter.close();
+    return true;
+} // Fecha a função SaveDatabase
+
+bool LoadDatabase(string path, vector<string> &List) {
+    ifstream FileReader(path);
+    
+    if(FileReader.is_open() == false)
+    {
+        cout << "Cannot open file" << endl;
+        return false;
+    }
+    else
+    {
+        string str;
+        while(getline(FileReader, str))
+        {
+            List.push_back(str);
+        }
+    }
+    
+    FileReader.close();
+    return true;
+} // Fecha a função LoadDatabase
 
 // Teoria da aula:
 // cout << são operadores, operadores são funções.
