@@ -2,11 +2,12 @@
 
 #include <iostream>
 #include <vector>
-#include <string>
+#include <string> // Acredito que com a iostream não precisa incluir a biblioteca <string>
 
 using namespace std;
 
 void PrintList(const vector<string> &List);
+bool RemoveString(string str, vector<string> &List);
 
 int main()
 {
@@ -79,7 +80,7 @@ int main()
 
 } // Fecha o loop
     return 0;
-}
+} // Fecha a função main
 
 void PrintList(const vector<string> &List) {
     for(size_t i=0; i < List.size(); i++)
@@ -102,13 +103,20 @@ bool RemoveString(string str, vector<string> &listOfWords) {
     return false;
     */
     
-    // Versão
+    // Versão que resolve o problema e ocorrência de palavras repetidas
     
     size_t i=0;
+    bool hasErase = false;
     while(i < listOfWords.size())
     {
-        
-    }
+        if(listOfWords.at(i) == str)
+        {
+        hasErase = true;
+        }
+    else
+        i++;
+}
+    return hasErase;
 } // Fecha a função
 
 // Teoria da aula:
