@@ -65,7 +65,12 @@ int main()
     
     if(ch == '5')
     {
-        continue;
+        cout << "Enter with a word to remove: ";
+           string str;
+           cin >> str;
+           if(!RemoveString(str, ListOfWords))
+                cout << endl << "Nothing to remove" << endl;
+           continue;
     }
     
     if(ch == '6')
@@ -122,3 +127,4 @@ bool RemoveString(string str, vector<string> &listOfWords) {
 // Teoria da aula:
 // cout << são operadores, operadores são funções.
 // for(;;) laço de repetição infinito.
+// Anotações da última aula
