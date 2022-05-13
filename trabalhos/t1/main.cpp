@@ -38,7 +38,41 @@ int main() {
 
     if(answer == '1')
     {
-    
+        int whichFile; // Definição de variável
+        cout << "Which file? Enter a file to open: 1, 2 or 3: "; // User input
+        cin >> whichFile; // User output
+        cout << endl;
+        ifstream file; // O Programa precisa desse método para abrir o arquivo
+        string line;
+
+            if (whichFile == 1) // Caso o usuário digite 1, o arquivo 1 será aberto e printado na tela.
+            {
+                file.open ("text1.txt");
+                    if(file.is_open()){ // Verificar se o arquivo foi aberto
+                        while(getline(file, line)){ // O programa irá ler linha por linha
+                            cout << line << endl;
+                            }
+                    }
+                    else {
+                        cout << "The computer can't find the file." << endl;
+                    }
+                //cout << "Era pra abrir mas n sei como abrir um arquivo ainda 1" << endl;
+                // cout << printar o texto do arquivo
+            }
+            else if (whichFile == 2)
+            {
+                cout << "Era pra abrir mas n sei como abrir um arquivo ainda 2" << endl;
+            }
+
+            else if (whichFile == 3)
+            {
+                cout << "Era pra abrir mas n sei como abrir um arquivo ainda 3" << endl;
+            }
+
+            else
+            {
+            cout << "The number is not a valid file. Please type another number next time." << endl;
+            }        
         continue; 
     }
 
