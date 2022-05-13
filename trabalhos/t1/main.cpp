@@ -39,7 +39,7 @@ int main() {
     if(answer == '1')
     {
         int whichFile; // Definição de variável
-        cout << "Which file? Enter a file to open: 1, 2 or 3: "; // User input
+        cout << "Which file? Enter number to open an file: 1, 2 or 3: "; // User input
         cin >> whichFile; // User output
         cout << endl;
         ifstream file; // O Programa precisa desse método para abrir o arquivo
@@ -49,24 +49,42 @@ int main() {
             {
                 file.open ("text1.txt");
                     if(file.is_open()){ // Verificar se o arquivo foi aberto
-                        while(getline(file, line)){ // O programa irá ler linha por linha
+                        while(getline(file, line))
+                            { // O programa irá ler linha por linha
                             cout << line << endl;
                             }
                     }
                     else {
                         cout << "The computer can't find the file." << endl;
                     }
-                //cout << "Era pra abrir mas n sei como abrir um arquivo ainda 1" << endl;
-                // cout << printar o texto do arquivo
             }
+
             else if (whichFile == 2)
             {
-                cout << "Era pra abrir mas n sei como abrir um arquivo ainda 2" << endl;
+                file.open ("text2.txt");
+                    if(file.is_open()){ // Verificar se o arquivo foi aberto
+                        while(getline(file, line))
+                            { // O programa irá ler linha por linha
+                            cout << line << endl;
+                            }
+                    }
+                    else {
+                        cout << "The computer can't find the file." << endl;
+                    }
             }
 
             else if (whichFile == 3)
             {
-                cout << "Era pra abrir mas n sei como abrir um arquivo ainda 3" << endl;
+                file.open ("text1.txt");
+                    if(file.is_open()){ // Verificar se o arquivo foi aberto
+                        while(getline(file, line))
+                            { // O programa irá ler linha por linha
+                            cout << line << endl;
+                            }
+                    }
+                    else {
+                        cout << "The computer can't find the file." << endl;
+                    }
             }
 
             else
