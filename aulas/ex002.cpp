@@ -4,6 +4,8 @@
 
 #include <iostream>
 #include <fstream>
+#include <vector>
+#include <utility>
 
 using namespace std;
 
@@ -16,11 +18,30 @@ int main()
        return 1;
    }
    
+   vector<pair<unsigned char, size_t>> FreqListch;
    char ch;
    while(fileReader.get(ch))
    {
-       cout << ch;
-   }
+    cout << ch;
+       
+        bool hasfound=false;
+        for(size_t i=0; i<FreqListch.size(); i++)
+        {
+           if(FreqListch.at(i).first == ch)
+            hasfound=true;
+           break;
+            
+        }
+       
+       // insere um novo elemento na lista caso não tenha sido encontrado no laço anterior
+       if(!hasfound)
+       pair<unisgned char, size_t> newpair;
+       newpair.first = ch;
+       newpair.second = 1;
+       
+       FreqListch.push_back(newpair);
+   } // Fecha o while
+   
 
     fileReader.close();
     
