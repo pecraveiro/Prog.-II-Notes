@@ -49,6 +49,7 @@ int main() {
             {
                 file.open ("text1.txt");
                     if(file.is_open()){ // Verificar se o arquivo foi aberto
+                    cout << "Text inside the file: " << endl;
                         while(getline(file, line))
                             { // O programa irá ler linha por linha
                             cout << line << endl;
@@ -63,6 +64,7 @@ int main() {
             {
                 file.open ("text2.txt");
                     if(file.is_open()){ // Verificar se o arquivo foi aberto
+                    cout << "Text inside the file: " << endl;
                         while(getline(file, line))
                             { // O programa irá ler linha por linha
                             cout << line << endl;
@@ -75,8 +77,9 @@ int main() {
 
             else if (whichFile == 3)
             {
-                file.open ("text1.txt");
+                file.open ("text3.txt");
                     if(file.is_open()){ // Verificar se o arquivo foi aberto
+                    cout << "Text inside the file: " << endl;
                         while(getline(file, line))
                             { // O programa irá ler linha por linha
                             cout << line << endl;
