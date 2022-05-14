@@ -10,12 +10,16 @@
 
 #include <iostream>
 #include <vector>
-#include <string> // *Pesquisar dps. Acredito que com a iostream não precisa incluir a biblioteca <string>
+#include <string> 
 #include <fstream> // Define várias classes que dão suporte a operações de iostreams em sequências armazenadas em arquivos externos.
 
 using namespace std;
 
 int main() {
+
+    //vector<vector<string>>Lista; // Lista dos arquivos
+
+    vector<pair<string, vector<string>>> Lista; // Lista dos arquivos (Lista de objetos pararelos)
 
     // Menu elaborado
     for(;;) // ;; representa um loop infinito
@@ -98,8 +102,21 @@ int main() {
     }
 
     if(answer == '2')
-    {
-    
+    {   
+        /* // Declaração de variáveis dos 3 textos utilizados para a análise
+        string str1 ("Amo jogar bola e brincar na neve.");
+        string str2 ("Desde criança eu jogo bola.");
+        string str3 ("Ganhei uma bola no meu aniversário.");
+        // User input
+        string hasFound;
+        cout << "Enter a possible word to verify if is in the text: " << endl;
+        // User output
+        cin >> hasFound;
+            while(getline(list, hasFound))
+            {
+                
+            }
+        */
         continue; 
     }
 
@@ -130,3 +147,4 @@ int main() {
     cout << "entrei no loop e sai";
     return 0;
 } // Fecha a função main
+
