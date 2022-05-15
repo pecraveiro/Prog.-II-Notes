@@ -11,6 +11,7 @@ bool LoadFile(string filename, vector<string> &List);
 bool SaveFile(string filename, const vector<string> &List);
 bool Search(string str, const vector<string> &List, size_t &pos);
 bool SearchSubstr(string str, const vector<string> &List, vector<size_t> &indices);
+bool removeSubstr(vector<vector<string>> &List, string substr);
 
 int main()
 {
@@ -20,16 +21,17 @@ int main()
 
     for(;;)
     {
-        cout << "--------------------------------------------------" << endl;
-        cout << "UFxC String Store V.0" << endl;
-        cout << "1. Insert string" << endl;
-        cout << "2. Print index and string" << endl; // Statistics
-        cout << "3. Search string (literal)" << endl;
-        cout << "4. Search substrings" << endl;
-        cout << "5. Remove (by string)" << endl;
-        cout << "6. Remove by substrings (all occurrences)" << endl << endl;
-        cout << "0. Quit" << endl;
-        cout << "--------------------------------------------------" << endl;
+        // Menu elaborado
+        cout << "------------------===--------------------" << endl;
+        cout << "| FILE MANIPULATOR HACK                 |" << endl;
+        cout << "| 1 - Open a file...                    |" << endl;
+        cout << "| 2 - Search for substrings...          |" << endl;
+        cout << "| 3 - Remove words containg a substring |" << endl;
+        cout << "| 4 - Remove all repeated words         |" << endl;
+        cout << "| 5 - Show statistics                   |" << endl;
+        cout << "|                                       |" << endl;
+        cout << "| 6 - Exit the program                  |" << endl;  
+        cout << "------------------===--------------------" << endl;
 
         // Declaração de variáveis
         char ch; // Guardar o valor que o usuário digita no menu
@@ -38,66 +40,66 @@ int main()
 
         if(ch == '1')
         {
+            cout << "Coloque o nome do seu arquivo abaixo (nos formatos adequados '.txt'): ";
             string Textos;
             cin >> Textos;
             LoadFile(Textos, ListaDeArquivos);
-            continue;
-        }
-
-        if(ch == '2')
-        {
             PrintList(ListaDeArquivos);
             continue;
         }
-        if(ch == '3')
-        {
-            cout << "Enter with a word to search: ";
-            string str;
-            cin >> str;
-            size_t pos=0;
-            if(Search(str, ListaDeArquivos, pos) == true)
-            {
-                cout << "Word located at position " << pos << endl; // Precisamos localizar no arquivo
-            }
-            else
-            {
-                cout << "Word not located" << endl;
-            }
 
-            continue;
-        }
-        if(ch == '4')
+        else if(ch == '2') // até aqui deu certo :)
         {
-            cout << "Enter with a substring to search : ";
+            cout << "Enter with a substring to search: ";
             string str;
             cin >> str;
             vector<size_t> indices;
             if(SearchSubstr(str, ListaDeArquivos, indices) == true)
             {
-                cout << "Number of strings found : " << indices.size() << endl;
+                cout << "Number of strings found: " << indices.size() << endl;
                 for(size_t i=0; i<indices.size(); i++)
                 {
-                    cout << "Word - " << ListaDeArquivos.at(indices.at(i)) << endl;
+                    cout << "Words - " << ListaDeArquivos.at(indices.at(i)) << endl;
                 }
             }
             else
             {
                 cout << "Substring not found." << endl;
             }
-
             continue;
         }
-        if(ch == '5')
+
+        else if(ch == '3')
+        {
+            cout << "Enter with a substring to remove: ";
+            string str;
+            cin >> str;
+            removeSubstr(str, ListaDeArquivos);
+            
+            else
+            {
+                cout << "Substring not found." << endl;
+            }
+            continue;
+        }
+        
+        else if(ch == '4')
         {
             cout << "Enter with a word to remove: ";
             string str;
             cin >> str;
             if(!RemoveString(str, ListaDeArquivos))
-                cout << endl << "Nothing to remove." << endl;
+                cout << "Nothing to remove." << endl;
             continue;
+            
         }
-        if(ch == '0')
+        else if(ch == '5')
         {
+            
+        }
+        else if(ch == '6')
+        {
+            cout << "Our file has been created and updated." << endl;
             SaveFile("concatenation.txt", ListaDeArquivos);
 
             break;
@@ -106,20 +108,21 @@ int main()
     }
 
     return 0;
-}
+} // Fecha a função main
 
 void PrintList(const vector<string> &List)
 {
-    cout << "List of words has " << List.size() << " words" << endl;
+    cout << "A lista de arquivos tem: " << List.size() << " arquivo(s)." << endl;
     for(size_t i=0; i<List.size(); i++)
     {
-        cout << "Index : " << i << " - Word: " << List.at(i) << " - Size: " << List.at(i).length() << endl;
+        cout << "Index: " << i << " - Words: " << List.at(i) << " - Size: " << List.at(i).length() << endl;
     }
+    cout << endl;
 }
 
 bool RemoveString(string str, vector<string> &List)
 {
-    //resolve o problema de ocorrencia de palavras repetidas
+    //resolve o problema de ocorrência de palavras repetidas
     size_t i=0;
     bool hasErase = false;
     while(i<List.size())
@@ -147,10 +150,9 @@ bool SaveFile(string filename, const vector<string> &List)
     }
     else
     {
-        cout << "Error, cannot open file" << endl;
+        cout << "Error, cannot open file." << endl;
         return false;
     }
-
     fileWriter.close();
     return true;
 }
@@ -168,7 +170,7 @@ bool LoadFile(string filename, vector<string> &List)
     }
     else
     {
-        cout << "Error, cannot open file" << endl;
+        cout << "Error, cannot open file." << endl;
         return false;
     }
 
@@ -202,3 +204,24 @@ bool SearchSubstr(string str, const vector<string> &List, vector<size_t> &indice
     }
     return true;
 }
+
+bool removeSubstr(vector<vector<string>> &List, string substr){
+    bool hasfound = false;
+
+    for (size_t i = 0; i < List.size(); i++){
+        size_t j = 0;
+
+        while ( j < List.at(i).size()) {
+            size_t found;
+            found = List.at(i).at(j).find(substr,0);
+
+            if (found != std::string::npos) { //talvez n precise do std
+                List.at(i).erase(List.at(i).begin() + j);
+                hasfound = true;
+            } else {
+                j++;
+            }
+        }
+    } //Fecha o for
+
+} // Fecha a função
