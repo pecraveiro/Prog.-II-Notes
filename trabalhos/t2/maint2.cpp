@@ -1,12 +1,14 @@
 /* 
- -----------------------------------------------
+ ------------------------------------------------------
   Trabalho - T2 - Unidade 02 - Introdução ao C++
   Aluno: Pedro Muhamad Suleiman Craveiro
   Matrícula: 20204443
   Universidade UFSC - Campus Araranguá
   Data: 07/06 - Entrega Final 08/06.
-  Console online: https://onlinegdb.com/eAGITDHdl
- -----------------------------------------------
+  Console online: https://onlinegdb.com/XvvCPKzaX
+  Youtube: https://youtu.be/B2oCXaDTOEs
+  Github: https://github.com/pecraveiro/Prog.-II-Notes
+ ------------------------------------------------------
 */
 
 // O programa é um um sistema para auxiliar na gestão de um comércio local.
@@ -42,7 +44,7 @@ class Store
     void updateItem(char itemName[], int pid, int total, float price);
 };
 
-void Store::insertItem(char itemName[], char company[], int pid, int c, float p)
+void Store::insertItem(char itemName[], char company[], int pid, int c, float p) // Adicionar novos itens na loja
 {
     strcpy(database[numItem].name,itemName);
     strcpy(database[numItem].company,company);
@@ -60,11 +62,11 @@ void Store::deleteItem(char itemName[], int pid) // Função para deletar o item
        if((strcmp(itemName,database[i].name)==0) && (database[i].product_id==pid))
        {
            database[i].copies--;
-           cout <<"\nITEM DELETED SUCCESSFULLY\n"; // Item deletado com sucesso
+           cout <<"\nITEM DELETED SUCCESSFULLY!\n"; // Item deletado com sucesso
            return;
        }
     //else
-    cout <<"\nITEM NOT FOUND\n";
+    cout <<"\nITEM NOT FOUND.\n";
 }
 
 itemEntry *Store::searchi(char itemName[], int pid) // Função para achar o item - Search Item
@@ -115,7 +117,7 @@ int main()
     cin>>option;
     switch(option)
     {
-        case 1 : cin.getline(name,80);
+        case 1 : cin.getline(name,80); // Adicionar um item
                  cout<<"\n Enter name of the item: "; //<<endl;
                  cin.getline(name,80);
                  cout<<"\n Marca do item: ";
@@ -129,7 +131,7 @@ int main()
                  sto.insertItem(name, company, product_id, copies, unit_price);
                 break;
                 
-        case 2 : cin.getline(name,80);
+        case 2 : cin.getline(name,80); // Deletar um item
                  cout<<"\n Enter name of the item: ";
                  cin.getline(name,80);
                  cout<<"\n Enter the product ID: ";
@@ -137,7 +139,7 @@ int main()
                  sto.deleteItem(name, product_id);
                 break;
                 
-        case 3 : cin.getline(name,80);
+        case 3 : cin.getline(name,80); // Procurar um item
                  cout<<"\n Enter name of the item: ";
                  cin.getline(name,80);
                  cout<<"\n Enter the product ID: ";
@@ -148,14 +150,14 @@ int main()
                  {
                      cout<<"\n Searching Result " << endl;
                      cout<<"\n Item found. " << endl;
-                     cout<<"\n Name of the item" << test->name<<"\n Company name: "<<test->company<<"\n Product ID "<<test->product_id<<"\n Number of copies available: "<<test->copies;
+                     cout<<"\n Name of the item: " << test->name<<"\n Company name: "<<test->company<<"\n Product ID: "<<test->product_id<<"\n Number of copies available: "<<test->copies;
                  }
                  else
                  {
                      cout << "Item not found.";
                      break;
                  }
-        case 4 : cout<<"\nEnter details for update: ";
+        case 4 : cout<<"\nEnter details for update: "; // Atualizar um item
                  cin.getline(name,80);
                  cout<<"\nEnter name: ";
                  cin.getline(name,80);
